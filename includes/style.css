@@ -1,0 +1,68 @@
+.mycontainer {
+  margin-top: 1%;
+  background-color: rgb(238, 238, 238);
+  border-radius: 30px;
+  padding: 20px;
+}
+body {
+  /* background-color: black; */
+  /* background-image: url("../content/photographer.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+}
+
+.displaynon {
+  display: none;
+}
+
+.p-r {
+  padding-right: 30px;
+}
+
+.m-t {
+  margin-top: 5%;
+}
+
+.bg-image {
+  /* The image used */
+  background-image: url("../content/photographer.jpg");
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+
+  position: absolute;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.resultContainers {
+  /* display: none; */
+}
+
+.Freq-T-headers {
+  text-align: center;
+}
+
+.align-Center {
+  text-align: center;
+}
+
+td {
+  text-align: center;
+}
+
+.col-table{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.margin-Bottom-at-the-End{
+  margin-bottom: 100px;
+}

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="includes/bootstrap.min.css">
+    <link rel="stylesheet" href="includes/style.css">
+
+    <script src="includes/bootstrap.min.js"></script>
+    <!-- <script src="includes/script.js"></script> -->
+
+    <title>Olasılık ve İstatistik Ödevi</title>
+</head>
+<body>
+    <div class="bg-image"></div>
+    <div class="container mycontainer m-t">
+        <!-- Navigation Bar -->
+        <!-- <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link ">Disabled</a>
+            </li>
+          </ul> -->
+
+          <p class="lead">
+            Olasılık Ve İstatistik Ödevi.
+          </p>
+        <hr>
+          <!-- Entering the data  -->
+          <p><strong> Insert Data (Veri girin)</strong></p>
+
+          <div class="input-group mb-3">
+             <div class="input-group">
+                <input type="text" class="form-control" name="newdata" id="newItemInput" onkeydown = "if (event.keyCode == 13)
+                document.getElementById('insertBtn').click()" onkeyup="insertNewItem()" >
+                <!-- <button type="button" id="insertBtn" class="btn btn-primary" onclick="insertNewItem()" >Ekel</button> -->
+              </div>
+          </div>
+    </div>
+
+    <div class="container  displaynon " id="resultContainers">
+          <div  class="displaynon" id="resultContainer">
+            <div class="container mycontainer">
+                <!-- Displaying the inserted data -->
+                
+                <p><strong>General Mass (Genel Kitle )</strong></p>
+                <hr>
+                <p id="unorderdArrayPlace"></p>
+
+              </div>
+              
+
+              <div class="container mycontainer">
+
+                <!-- 1.  Displaying the simple random sampling section  -->
+                <div class="row">
+                    <div class="col">
+                        <p><strong>1-Simple Random Sampling (Basit Rastgele örnekleme)</strong></p>
+
+                    </div>
+                    <div class="col">
+                        <div class="input-group">
+                            <input type="number" class="form-control" name="newdata" id="randomSampleNumberID" placeholder="(rastgele olaraka) kaç tane öğe istiyorsun?" onkeydown = "if (event.keyCode == 13)
+                            document.getElementById('randomSamplBtn').click()">
+                            <button type="button" class="btn btn-primary" onclick="simpleRandomSampling()" id="randomSamplBtn" >Üret</button>
+                        </div>                </div>
+                </div>
+                <hr>
+                <p id="simpleRandomSamplingPlace"></p>
+              </div>
+
+              <div class="container mycontainer">
+
+                <!-- 2. Displaying the Systematic random sampling section  -->
+                <div class="row">
+                    <div class="col">
+                        <p><strong>2-Systematic Random Sampling (Sistematik Rastgele örnekleme)</strong></p>
+
+                    </div>
+                    <div class="col">
+                        <div class="input-group">
+                            <input type="number" class="form-control" name="newdata" id="systematicSampleNumberID" placeholder="(rastgele olaraka) kaç tane öğe istiyorsun?" onkeydown = "if (event.keyCode == 13)
+                            document.getElementById('systematicSamplBtn').click()">
+                            <button type="button" class="btn btn-primary" onclick="SystematicRandomSampling()" id="systematicSamplBtn" >Üret</button>
+                        </div>                </div>
+                </div>
+                <hr>
+                <p id="systematicRandomSamplingPlace"></p>
+              </div>
+
+              <div class="container mycontainer">
+                <!-- 3. Displaying the inserted with ordering  -->
+                <p><strong>3- Arrenged Mass (Basit Seri)</strong></p>
+                <hr>
+                <p id="orderdArrayPlace"></p>
+              </div>
+
+              <div class="container mycontainer">
+                <!-- 4.  displaying the frequancy serise table  -->
+                <div class="row">
+                    <div class="col">
+                        <p><strong>4- Simple Frequency Serise (Frekans Serisi)</strong></p>
+
+                    </div>
+                    <div class="col">   
+                        <button type="button" class="btn btn-primary" onclick="calculateSimpleFrequency()" id="simpleFrequency" >Hesapla</button>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                  <div class="col"></div>
+                    <div class="col"><table class="table table-striped">
+                        <thead class="align-Center">
+                          <tr>
+                            <th scope="col">X</th>
+                            <th scope="col">F <sub>i</sub></th>
+                          </tr>
+                        </thead>
+                        <tbody id="frequencyTableContent" class="align-Center">
+                          
+                        </tbody>
+                      </table></div>
+                    <div class="col"></div>
+                </div>
+              </div>
+
+              <div class="container mycontainer">
+                <!-- 5. displaying the frequancy table  -->
+                <div class="row">
+                    <div class="col">
+                        <p><strong>5- Frequency Table (Frekans Tablosu)</strong></p>
+  
+                    </div>
+                    <div class="col">   
+                        <button type="button" class="btn btn-primary" onclick="calculateFrequencyTable()" id="simpleFrequency" >Hesapla</button>
+                    </div>
+                </div>
+                <hr>
+  
+                <div class="row">
+                    <div class="col col-table"><table class="table table-striped">
+                      <p class="Freq-T-headers">Sınıf limitleri</p>
+                        <thead>
+                          <tr>
+                            <th scope="col col-table" class="Freq-T-headers">Alt</th>
+                            <th scope="col col-table" class="Freq-T-headers">Üst</th>
+                          </tr>
+                        </thead>
+                        <tbody id="classLimits">
+                        
+                        </tbody>
+                      </table></div>
+                    <div class="col col-table">
+                      <table class="table table-striped">
+                        <p class="Freq-T-headers">Sınıf Sınırları</p>
+                          <thead>
+                            <tr>
+                              <th scope="col col-table" class="Freq-T-headers">Alt</th>
+                              <th scope="col col-table" class="Freq-T-headers">Üst</th>
+                            </tr>
+                          </thead>
+                          <tbody id="ClassSinirs">
+                          </tbody>
+                        </table>
+                    </div>
+                    <div class="col col-table">
+                      <table class="table table-striped">
+                        <p class="Freq-T-headers">Sınıf Frekansları</p>
+                          <thead>
+                            <tr>
+                              <th scope="col col-table" class="Freq-T-headers">Frekans</th>
+                            </tr>
+                          </thead>
+                          <tbody id="classFrequencTable">
+                          </tbody>
+                        </table>
+                    </div>
+                    <div class="col col-table">
+                      <table class="table table-striped">
+                        <p class="Freq-T-headers">Sınıfın orta noktaları</p>
+                          <thead>
+                            <tr>
+                              <th scope="col col-table" class="Freq-T-headers">SON</th>
+                            </tr>
+                          </thead>
+                          <tbody id="sinifOrtallamaNoktasi">
+                          </tbody>
+                        </table>
+                    </div>
+                    <div class="col col-table">
+                      <table class="table table-striped">
+                        <p class="Freq-T-headers">Eklenik Frekanslar</p>
+                          <thead>
+                            <tr>
+                              <th scope="col col-table" class="Freq-T-headers">EF</th>
+                            </tr>
+                          </thead>
+                          <tbody id="ClasseklenikFrekans">
+                          </tbody>
+                        </table>
+                    </div>
+                    <div class="col col-table">
+                      <table class="table table-striped">
+                        <p class="Freq-T-headers">Oransal Frekanslar</p>
+                          <thead>
+                            <tr>
+                              <th scope="col col-table" class="Freq-T-headers">OF</th>
+                            </tr>
+                          </thead>
+                          <tbody id="oransalFrekanslar">
+                          </tbody>
+                        </table>
+                    </div>
+                    <div class="col col-table">
+                      <table class="table table-striped ">
+                        <p class="Freq-T-headers">Oran-Ekle Frekanslar</p>
+                          <thead>
+                            <tr>
+                              <th scope="col col-table" class="Freq-T-headers">OEF</th>
+                            </tr>
+                          </thead>
+                          <tbody id="oransalEklenikFrekanslar">
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+              </div>
+
+                <!-- merkezi eğilim ölçüleri -->
+              <div class="container mycontainer">
+                <div class="row">
+                    <div class="col">
+                        <p><strong>6- Central Tendency Measures (Mrkezi Eğilim Ölçüleri)</strong></p>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-primary" onclick="centralTrendencyMesures()" >Hesapla</button>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                    Ortalama: <span id="ortalama"> </span>
+                    </div>
+                    <div class="col">
+                    Mediyan: <span id="mediyan"> </span>
+                    </div>
+                    <div class="col">
+                    Mod:  <span id="mod"> </span>
+                    </div>
+                </div>
+              </div>
+
+              <!-- 7. Dagilim olcutleri -->
+              <div class="container mycontainer margin-Bottom-at-the-End">
+                
+                <div class="row">
+                    <div class="col">
+                        <p><strong>7-  Dispersion Measures (Dağılım ölçüleri)</strong></p>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-primary" onclick="calculateDispersionMeasure()" >Hesapla</button>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                    Varyans: <span id="variance"> </span>
+                    </div>
+                    <div class="col">
+                    Standart Stapma: <span id="standartSapma"> </span>
+                    </div>
+                    <div class="col">
+                    Ortalama Mutlak Sapma:  <span id="ortalamaMutlakSapma"> </span>
+                    </div>
+                </div>
+              </div>
+
+
+
+            </div>
+          
+
+
+        <!-- Body Starts Here -->
+        <!-- <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table> -->
+          
+      </div>
+      <script src="includes/script.js"></script>
+</body>
+</html>
