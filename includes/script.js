@@ -1,10 +1,10 @@
-// 1. basit rasgele örnekleme       || DON
-// 2. sistematik rasgele örnekleme
-// 3. basit seri
-// 4. frekans seri ( slayt 20 / hafta 1-1 )
-// 5. frekans tablosu 
-// 6. merkezi eğilim ölçüleri 
-// 7. dağılım ölçüleri
+// 1. basit rasgele örnekleme  || done
+// 2. sistematik rasgele örnekleme  || done
+// 3. basit seri  || done
+// 4. frekans seri  || done
+// 5. frekans tablosu   || done
+// 6. merkezi eğilim ölçüleri  || done
+// 7. dağılım ölçüleri  || done
 // 8. kombinasyon permütasyon
 
 //  1.5 1.5 2.6 2.6 3.4 3.8 3.8 4.1 4.1 4.6 4.6 4.6 5.2 5.2
@@ -16,14 +16,12 @@ var arrangedItems = [];
 
 function insertNewItem(){    
 
-
     var newItems = document.getElementById('newItemInput').value;
     // document.getElementById("newItemInput").value = null;
     if(newItems == null || newItems ==''){
         return 0;
     }
     unarrangedItems = newItems.split(" ");
-
 
     // display the resute areya 
     displayTheResultArea();
@@ -33,11 +31,9 @@ function insertNewItem(){
 
     // ordering the items and desplaying them
     displayedorderdItems();
-
-
 }
 
-
+// this function shows the hidden area when the first data inputed. 
 function displayTheResultArea(){
      // display the resute areya 
     var element = document.getElementById("resultContainer");
@@ -51,6 +47,7 @@ function displayTheResultArea(){
     }
 }
 
+
 // unarrenged Mass (girilen Seri)
 function displayUnorderdItems(){
      // unorded item array
@@ -60,6 +57,7 @@ function displayUnorderdItems(){
        });
      document.getElementById("unorderdArrayPlace").innerHTML = displayedUnorderdItems;
 }
+
 
 //  Arrenged Mass (Basit Seri)
 function displayedorderdItems(){
@@ -75,6 +73,7 @@ function displayedorderdItems(){
       });
     document.getElementById("orderdArrayPlace").innerHTML = displayedorderdItems;
 }
+
 
 // Simple Random Sampling (Basit Rastgele örnekleme)
 function simpleRandomSampling(){
@@ -96,6 +95,7 @@ function simpleRandomSampling(){
 
     document.getElementById("simpleRandomSamplingPlace").innerHTML = randomItems;
 }
+
 
 // Systematic Random Sampling (Sistematik Rastgele örnekleme)
 function SystematicRandomSampling(){
@@ -120,6 +120,7 @@ function SystematicRandomSampling(){
     }
     document.getElementById("systematicRandomSamplingPlace").innerHTML = systematicRandomItems;
 }
+
 
 //  Central Tendency Measures (Mrkezi Eğilim Ölçüleri)
 function centralTrendencyMesures(){
@@ -163,6 +164,7 @@ function centralTrendencyMesures(){
 
 }
 
+
 // calculate the modes 
 function getModes(array) {
     var frequency = []; // array of frequency.
@@ -185,6 +187,7 @@ function getModes(array) {
     return modes;
   }
 
+
 //  Calculate Frequenc serise (frekans serisi)
   function calculateSimpleFrequency(){
 
@@ -203,7 +206,8 @@ function getModes(array) {
     }
   }
 
-// calculate frequency table
+
+// calculate frequency table  (frekans tablosu)
   function calculateFrequencyTable(){
     // 1. Gözlemlerin sayısı 
     var n = arrangedItems.length;
@@ -236,8 +240,6 @@ function getModes(array) {
     var eklaneikFreakans = [];
     let oransalEklenikFrekanslar = [] ;
     
-   debugger;
-
    for(var i = 0; i < K ; i++){
     var counter = 0;
     let counterforEkleniFrekans = 0;
@@ -289,7 +291,7 @@ function getModes(array) {
     document.getElementById("oransalEklenikFrekanslar").innerHTML = oransalEklenikFrekanslar;
 }
 
-// calculate dispersion measure
+// calculate dispersion measure  (dağılım ölçüleri)
 function calculateDispersionMeasure(){
     var n = arrangedItems.length;
     var ortalama = 0;
@@ -308,7 +310,7 @@ function calculateDispersionMeasure(){
     calculateMeanAbsoluteDeviation()
 }
 
-// calculate ortalama mutlak sapma
+// calculate mean absolute deviation (ortalama mutlak sapma) 
 function calculateMeanAbsoluteDeviation(){
     var n = arrangedItems.length;
     var ortalama = 0;
@@ -323,11 +325,3 @@ function calculateMeanAbsoluteDeviation(){
     varyans = varyans/n;
     document.getElementById("ortalamaMutlakSapma").innerHTML = varyans.toFixed(3);
 }
-
-
-
-//  calcuate frequency table
-
-
-
-
