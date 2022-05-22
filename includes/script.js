@@ -1,10 +1,10 @@
-// 1. basit rasgele örnekleme  || done
-// 2. sistematik rasgele örnekleme  || done
-// 3. basit seri  || done
-// 4. frekans seri  || done
-// 5. frekans tablosu   || done
-// 6. merkezi eğilim ölçüleri  || done
-// 7. dağılım ölçüleri  || done
+// 1. basit rasgele örnekleme       || DON
+// 2. sistematik rasgele örnekleme
+// 3. basit seri
+// 4. frekans seri ( slayt 20 / hafta 1-1 )
+// 5. frekans tablosu 
+// 6. merkezi eğilim ölçüleri 
+// 7. dağılım ölçüleri
 // 8. kombinasyon permütasyon
 
 //  1.5 1.5 2.6 2.6 3.4 3.8 3.8 4.1 4.1 4.6 4.6 4.6 5.2 5.2
@@ -13,8 +13,15 @@
 var unarrangedItems = [];
 var arrangedItems = [];
 
+// For calculating Q1 and Q3 
+var sinifFrekansValues = [];
+var sinifAltSinirlarValues = [];
+var sinifwidth = 0;
+
+
 
 function insertNewItem(){    
+
 
     var newItems = document.getElementById('newItemInput').value;
     // document.getElementById("newItemInput").value = null;
@@ -22,6 +29,7 @@ function insertNewItem(){
         return 0;
     }
     unarrangedItems = newItems.split(" ");
+
 
     // display the resute areya 
     displayTheResultArea();
@@ -31,9 +39,11 @@ function insertNewItem(){
 
     // ordering the items and desplaying them
     displayedorderdItems();
+
+
 }
 
-// this function shows the hidden area when the first data inputed. 
+
 function displayTheResultArea(){
      // display the resute areya 
     var element = document.getElementById("resultContainer");
@@ -47,7 +57,6 @@ function displayTheResultArea(){
     }
 }
 
-
 // unarrenged Mass (girilen Seri)
 function displayUnorderdItems(){
      // unorded item array
@@ -57,7 +66,6 @@ function displayUnorderdItems(){
        });
      document.getElementById("unorderdArrayPlace").innerHTML = displayedUnorderdItems;
 }
-
 
 //  Arrenged Mass (Basit Seri)
 function displayedorderdItems(){
@@ -73,7 +81,6 @@ function displayedorderdItems(){
       });
     document.getElementById("orderdArrayPlace").innerHTML = displayedorderdItems;
 }
-
 
 // Simple Random Sampling (Basit Rastgele örnekleme)
 function simpleRandomSampling(){
@@ -95,7 +102,6 @@ function simpleRandomSampling(){
 
     document.getElementById("simpleRandomSamplingPlace").innerHTML = randomItems;
 }
-
 
 // Systematic Random Sampling (Sistematik Rastgele örnekleme)
 function SystematicRandomSampling(){
@@ -121,10 +127,8 @@ function SystematicRandomSampling(){
     document.getElementById("systematicRandomSamplingPlace").innerHTML = systematicRandomItems;
 }
 
-
 //  Central Tendency Measures (Mrkezi Eğilim Ölçüleri)
 function centralTrendencyMesures(){
-        // debugger;
     //  calculate the average
     var sum = 0;
 
@@ -135,7 +139,6 @@ function centralTrendencyMesures(){
     var avg = sum / unarrangedItems.length ;
     document.getElementById("ortalama").innerHTML = avg.toFixed(2);
 
-
     //  calculate the median
     var median =  0;
     const isEven = arrangedItems.length % 2 === 0;
@@ -143,7 +146,7 @@ function centralTrendencyMesures(){
         median = (parseFloat(arrangedItems[(arrangedItems.length /2) -1]) + parseFloat(arrangedItems[(arrangedItems.length /2)] )) / 2 ;
     }
     else{
-        median = arrangedItems[Math.floor(arrangedItems.length / 2)];
+        median = parseFloat(arrangedItems[Math.floor(arrangedItems.length / 2)]);
     }
     document.getElementById("mediyan").innerHTML = median.toFixed(2);
 
@@ -152,7 +155,6 @@ function centralTrendencyMesures(){
     var modes = getModes(arrangedItems);
     var finalmodes = 0;
     for (let i = 0; i < modes.length; i++) {
-        // debugger;
         if(finalmodes == 0){
             finalmodes = '<span class="p-r">' + modes[i] + '</span>';
         }else{
@@ -163,7 +165,6 @@ function centralTrendencyMesures(){
 
 
 }
-
 
 // calculate the modes 
 function getModes(array) {
@@ -187,7 +188,6 @@ function getModes(array) {
     return modes;
   }
 
-
 //  Calculate Frequenc serise (frekans serisi)
   function calculateSimpleFrequency(){
 
@@ -206,8 +206,7 @@ function getModes(array) {
     }
   }
 
-
-// calculate frequency table  (frekans tablosu)
+// calculate frequency table
   function calculateFrequencyTable(){
     // 1. Gözlemlerin sayısı 
     var n = arrangedItems.length;
@@ -217,6 +216,7 @@ function getModes(array) {
     var K = Math.ceil(Math.sqrt(n));
     // 4. Sınıf genişliği
     var h = Math.ceil(R/ K);
+    sinifwidth = h;
 
     // 5. sinif limitleri hesapla 
     var limitUst = (parseFloat(arrangedItems[0]) + parseFloat(h) -0.1);
@@ -239,7 +239,7 @@ function getModes(array) {
     let eklenicFrecansItems = [];
     var eklaneikFreakans = [];
     let oransalEklenikFrekanslar = [] ;
-    
+
    for(var i = 0; i < K ; i++){
     var counter = 0;
     let counterforEkleniFrekans = 0;
@@ -270,8 +270,10 @@ function getModes(array) {
         }
 
          classSinirs += "<tr><td>"+ (parseFloat(sinirAlt)+(h * i)) +"</td><td>"+ (parseFloat(sinirUst)+(h * i)) +"</td></tr>";
+         sinifAltSinirlarValues.push((parseFloat(sinirAlt)+(h * i)));
          //  sinif frekans
-         sinifFrekans += "<tr><td>" + counter + "</td></tr>"; 
+         sinifFrekans += "<tr><td>" + counter + "</td></tr>";
+         sinifFrekansValues.push(counter);
          //  oransal sinif frekans
          oransalFrekans += "<tr><td>" + counter + "/"+ n+"</td></tr>";
          // sinif ortalama noktasi
@@ -291,26 +293,108 @@ function getModes(array) {
     document.getElementById("oransalEklenikFrekanslar").innerHTML = oransalEklenikFrekanslar;
 }
 
-// calculate dispersion measure  (dağılım ölçüleri)
+// calculate dispersion measure
 function calculateDispersionMeasure(){
+
+    if(sinifwidth == 0){
+        return alert("Önce Frekans Tablosu Hesaplayı");
+    }
+
     var n = arrangedItems.length;
     var ortalama = 0;
     arrangedItems.forEach(function myfunc(item){
         ortalama += parseFloat(item);
     });
+
     ortalama = ortalama/n;
     var varyans = 0;
     arrangedItems.forEach(function myfunc(item){
         varyans += Math.pow((item - ortalama),2);
     });
+
+    var m3 = 0;
+    arrangedItems.forEach(function myfunc(item){
+       m3 += Math.pow((item - ortalama), 3);
+    });
+    m3 = m3/(n-1);
+
+    var m4 = 0;
+    arrangedItems.forEach(function myfunc(item){
+       m4 += Math.pow((item - ortalama), 4);
+    });
+    m4 = m4/(n-1);
+
     varyans = varyans/(n-1);
     var standartSapma = Math.sqrt(varyans);
+    var min = arrangedItems[0];
+    var max =  arrangedItems[arrangedItems.length-1];
+
     document.getElementById("variance").innerHTML = varyans.toFixed(3);
     document.getElementById("standartSapma").innerHTML = standartSapma.toFixed(3);
-    calculateMeanAbsoluteDeviation()
+    document.getElementById("m3").innerHTML = m3.toFixed(3);
+    document.getElementById("m4").innerHTML = m4.toFixed(3);
+    document.getElementById("min").innerHTML = min;
+    document.getElementById("max").innerHTML = max;
+    calculateMeanAbsoluteDeviation();
+    calculateQ1();
+    calculateQ3()
 }
 
-// calculate mean absolute deviation (ortalama mutlak sapma) 
+
+
+function calculateQ1(){
+    // alt dortte birligin n/4 hesapla
+    var altNboluDort = arrangedItems.length/4;
+    var chekingValue = 0.0;
+    var QBirSinifIndex = 0;
+    while( chekingValue < altNboluDort){
+
+        chekingValue += parseFloat(sinifFrekansValues[QBirSinifIndex]);
+        QBirSinifIndex++;
+    }
+
+    var n1 = 0;
+    for(var i = 0; i < (QBirSinifIndex-1) ; i++){
+        n1 += sinifFrekansValues[i];
+    }
+
+
+    var FQ1 = sinifFrekansValues[QBirSinifIndex-1];
+    var L1 = sinifAltSinirlarValues[QBirSinifIndex-1];
+    var j1 = altNboluDort - n1;
+
+    var Q1 = L1 + ((j1 * sinifwidth) / (FQ1));
+    document.getElementById("Q1").innerHTML = Q1;
+}
+
+
+function calculateQ3(){
+    // alt dortte birligin n/4 hesapla
+    var ust3Nbolu4 = ( arrangedItems.length * 3 )/4;
+    var chekingValue = 0.0;
+    var Q3SinifIndex = 0;
+    while( chekingValue < ust3Nbolu4){
+
+        chekingValue += parseFloat(sinifFrekansValues[Q3SinifIndex]);
+        Q3SinifIndex++;
+    }
+
+    debugger;
+    var n3 = 0;
+    for(var i = 0; i < (Q3SinifIndex-1) ; i++){
+        n3 += sinifFrekansValues[i];
+    }
+
+
+    var FQ3 = sinifFrekansValues[Q3SinifIndex-1];
+    var L3 = sinifAltSinirlarValues[Q3SinifIndex-1];
+    var j3 = ust3Nbolu4 - n3;
+
+    var Q3 = L3 + ((j3 * sinifwidth) / (FQ3));
+    document.getElementById("Q3").innerHTML = Q3;
+}
+
+// calculate ortalama mutlak sapma
 function calculateMeanAbsoluteDeviation(){
     var n = arrangedItems.length;
     var ortalama = 0;
@@ -325,3 +409,40 @@ function calculateMeanAbsoluteDeviation(){
     varyans = varyans/n;
     document.getElementById("ortalamaMutlakSapma").innerHTML = varyans.toFixed(3);
 }
+
+
+// calculate permutaion and combination
+function calculatePermutationAndCombination(){
+
+    var n = document.getElementById("n").value;
+    var r = document.getElementById("r").value;
+
+    var permutation = factorial(n)/factorial(n-r);
+    var combination = factorial(n)/(factorial(r) * factorial(n-r));
+
+
+    // alert(permutation);
+    document.getElementById("Permutation").innerHTML = permutation;
+    document.getElementById("Combination").innerHTML = combination;
+
+
+
+}
+
+
+// calculate the factorial
+function factorial(n){
+    //base case
+    if(n == 0 || n == 1){
+        return 1;
+    //recursive case
+    }else{
+        return n * factorial(n-1);
+    }
+}
+
+
+
+
+
+

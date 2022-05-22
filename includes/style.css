@@ -3,6 +3,7 @@
   background-color: rgb(238, 238, 238);
   border-radius: 30px;
   padding: 20px;
+  margin-top: 10px;
 }
 body {
   /* background-color: black; */
@@ -65,4 +66,8 @@ td {
 
 .margin-Bottom-at-the-End{
   margin-bottom: 100px;
+}
+
+.wrapWords{
+  word-wrap: break-word;
 }

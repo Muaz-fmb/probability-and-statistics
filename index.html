@@ -15,19 +15,6 @@
 <body>
     <div class="bg-image"></div>
     <div class="container mycontainer m-t">
-        <!-- Navigation Bar -->
-        <!-- <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Active</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link ">Disabled</a>
-            </li>
-          </ul> -->
-
           <p class="lead">
             Olasılık Ve İstatistik Ödevi.
           </p>
@@ -37,8 +24,9 @@
 
           <div class="input-group mb-3">
              <div class="input-group">
-                <input type="text" class="form-control" name="newdata" id="newItemInput" onkeydown = "if (event.keyCode == 13)
-                document.getElementById('insertBtn').click()" onkeyup="insertNewItem()" >
+                <input type="text" class="form-control wrapWords" name="newdata" id="newItemInput" onkeydown = "if (event.keyCode == 13)
+                document.getElementById('insertBtn').click()" onkeyup="insertNewItem()"
+                >
                 <!-- <button type="button" id="insertBtn" class="btn btn-primary" onclick="insertNewItem()" >Ekel</button> -->
               </div>
           </div>
@@ -46,7 +34,7 @@
 
     <div class="container  displaynon " id="resultContainers">
           <div  class="displaynon" id="resultContainer">
-            <div class="container mycontainer">
+            <div class="container mycontainer wrapWords">
                 <!-- Displaying the inserted data -->
                 
                 <p><strong>General Mass (Genel Kitle )</strong></p>
@@ -54,55 +42,57 @@
                 <p id="unorderdArrayPlace"></p>
 
               </div>
-              
+              <div class="row">
+                <div class="col">
+                    <!-- 1.  Displaying the simple random sampling section  -->
+                    <div class="container mycontainer">
+                      <div class="row">
+                          <div class="col">
+                              <p><strong> 1-Simple Random Sampling ( Basit Rastgele örnekleme )</strong></p>
 
-              <div class="container mycontainer">
-
-                <!-- 1.  Displaying the simple random sampling section  -->
-                <div class="row">
-                    <div class="col">
-                        <p><strong>1-Simple Random Sampling (Basit Rastgele örnekleme)</strong></p>
-
+                          </div>
+                          <div class="col">
+                              <div class="input-group">
+                                  <input type="number" class="form-control" name="newdata" id="randomSampleNumberID" placeholder="(rastgele olaraka) kaç tane öğe istiyorsun?" onkeydown = "if (event.keyCode == 13)
+                                  document.getElementById('randomSamplBtn').click()">
+                                  <button type="button" class="btn btn-primary" onclick="simpleRandomSampling()" id="randomSamplBtn" >Üret</button>
+                              </div>                </div>
+                      </div>
+                      <hr>
+                      <p id="simpleRandomSamplingPlace"></p>
                     </div>
-                    <div class="col">
-                        <div class="input-group">
-                            <input type="number" class="form-control" name="newdata" id="randomSampleNumberID" placeholder="(rastgele olaraka) kaç tane öğe istiyorsun?" onkeydown = "if (event.keyCode == 13)
-                            document.getElementById('randomSamplBtn').click()">
-                            <button type="button" class="btn btn-primary" onclick="simpleRandomSampling()" id="randomSamplBtn" >Üret</button>
-                        </div>                </div>
                 </div>
-                <hr>
-                <p id="simpleRandomSamplingPlace"></p>
+                <div class="col">
+                  <!-- 2. Displaying the Systematic random sampling section  -->
+                  <div class="container mycontainer">
+                    <div class="row">
+                        <div class="col">
+                            <p><strong>2-Systematic Random Sampling (Sistematik Rastgele örnekleme)</strong></p>
+
+                        </div>
+                        <div class="col">
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="newdata" id="systematicSampleNumberID" placeholder="(rastgele olaraka) kaç tane öğe istiyorsun?" onkeydown = "if (event.keyCode == 13)
+                                document.getElementById('systematicSamplBtn').click()">
+                                <button type="button" class="btn btn-primary" onclick="SystematicRandomSampling()" id="systematicSamplBtn" >Üret</button>
+                            </div>                
+                        </div>
+                    </div>
+                    <hr>
+                    <p id="systematicRandomSamplingPlace"></p>
+                  </div>
+                </div>
               </div>
 
-              <div class="container mycontainer">
-
-                <!-- 2. Displaying the Systematic random sampling section  -->
-                <div class="row">
-                    <div class="col">
-                        <p><strong>2-Systematic Random Sampling (Sistematik Rastgele örnekleme)</strong></p>
-
-                    </div>
-                    <div class="col">
-                        <div class="input-group">
-                            <input type="number" class="form-control" name="newdata" id="systematicSampleNumberID" placeholder="(rastgele olaraka) kaç tane öğe istiyorsun?" onkeydown = "if (event.keyCode == 13)
-                            document.getElementById('systematicSamplBtn').click()">
-                            <button type="button" class="btn btn-primary" onclick="SystematicRandomSampling()" id="systematicSamplBtn" >Üret</button>
-                        </div>                </div>
-                </div>
-                <hr>
-                <p id="systematicRandomSamplingPlace"></p>
-              </div>
-
-              <div class="container mycontainer">
-                <!-- 3. Displaying the inserted with ordering  -->
+              <!-- 3. Displaying the inserted with ordering  -->
+              <div class="container mycontainer wrapWords">
                 <p><strong>3- Arrenged Mass (Basit Seri)</strong></p>
                 <hr>
                 <p id="orderdArrayPlace"></p>
               </div>
 
+              <!-- 4.  displaying the frequancy serise table  -->
               <div class="container mycontainer">
-                <!-- 4.  displaying the frequancy serise table  -->
                 <div class="row">
                     <div class="col">
                         <p><strong>4- Simple Frequency Serise (Frekans Serisi)</strong></p>
@@ -131,8 +121,8 @@
                 </div>
               </div>
 
+              <!-- 5. displaying the frequancy table  -->
               <div class="container mycontainer">
-                <!-- 5. displaying the frequancy table  -->
                 <div class="row">
                     <div class="col">
                         <p><strong>5- Frequency Table (Frekans Tablosu)</strong></p>
@@ -233,7 +223,7 @@
                 </div>
               </div>
 
-                <!-- merkezi eğilim ölçüleri -->
+              <!--6.  merkezi eğilim ölçüleri -->
               <div class="container mycontainer">
                 <div class="row">
                     <div class="col">
@@ -258,7 +248,7 @@
               </div>
 
               <!-- 7. Dagilim olcutleri -->
-              <div class="container mycontainer margin-Bottom-at-the-End">
+              <div class="container mycontainer">
                 
                 <div class="row">
                     <div class="col">
@@ -280,45 +270,65 @@
                     Ortalama Mutlak Sapma:  <span id="ortalamaMutlakSapma"> </span>
                     </div>
                 </div>
+                <div class="row">
+                  <div class="col">
+                  Q1: <span id="Q1"> </span>
+                  </div>
+                  <div class="col">
+                  Q3: <span id="Q3"> </span>
+                  </div>
+                  <div class="col">
+                  M<sub>3</sub>: <span id="m3"> </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    M<sub>4</sub>: <span id="m4"> </span>
+                  </div>
+                  <div class="col">
+                  Min: <span id="min"> </span>
+                  </div>
+                  <div class="col">
+                  Max: <span id="max"> </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 8. kombinasyon ve permütasyon -->
+              <div class="container mycontainer margin-Bottom-at-the-End">
+                <div class="row">
+                    <div class="col">
+                        <p><strong>8-  Permutation And Combination (Permütasyon Ve Kombinasyon)</strong></p>
+                    </div>
+                    <div class="col">
+                      <div class="input-group">
+                          <input type="number" class="form-control" name="newdata" id="n" placeholder="n giriniz:">
+                      </div>                
+                  </div>
+                  <div class="col">
+                    <div class="input-group">
+                        <input type="number" class="form-control" name="newdata" id="r" placeholder="r giriniz:">
+                    </div>                
+                </div>
+                <div class="col">
+                  <button type="button" class="btn btn-primary" onclick="calculatePermutationAndCombination()" >Hesapla</button>
+              </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                    Permutation (Permütasyon): <span id="Permutation"> </span>
+                    </div>
+                    <div class="col">
+                    Combination (Kombinasyon): <span id="Combination"> </span>
+                    </div>
+                </div>
               </div>
 
 
 
             </div>
-          
-
-
-        <!-- Body Starts Here -->
-        <!-- <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table> -->
-          
+       
       </div>
       <script src="includes/script.js"></script>
 </body>
