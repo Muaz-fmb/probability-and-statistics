@@ -45,7 +45,7 @@
               <div class="row">
                 <div class="col">
                     <!-- 1.  Displaying the simple random sampling section  -->
-                    <div class="container mycontainer">
+                    <div class="container mycontainer wrapWords">
                       <div class="row">
                           <div class="col">
                               <p><strong> 1-Simple Random Sampling ( Basit Rastgele örnekleme )</strong></p>
@@ -53,10 +53,16 @@
                           </div>
                           <div class="col">
                               <div class="input-group">
-                                  <input type="number" class="form-control" name="newdata" id="randomSampleNumberID" placeholder="(rastgele olaraka) kaç tane öğe istiyorsun?" onkeydown = "if (event.keyCode == 13)
-                                  document.getElementById('randomSamplBtn').click()">
-                                  <button type="button" class="btn btn-primary" onclick="simpleRandomSampling()" id="randomSamplBtn" >Üret</button>
-                              </div>                </div>
+                                <input type="number" class="form-control" name="min" id="min" placeholder="Min">
+                              </div> 
+                              <div class="input-group">
+                                <input type="number" class="form-control" name="max" id="max" placeholder="Max">
+                            </div> 
+                            </div>
+                            <div class="input-group">
+                              <input type="number" class="form-control" name="rastgeleSayi" id="rastgeleSayi" placeholder="Rastgele sayisi">
+                              <button type="button" class="btn btn-primary" onclick="simpleRandomSampling()" id="randomSamplBtn" >Üret</button>
+                          </div> 
                       </div>
                       <hr>
                       <p id="simpleRandomSamplingPlace"></p>
@@ -71,12 +77,23 @@
 
                         </div>
                         <div class="col">
+                          <div class="input-group">
+                            <input type="number" class="form-control" name="bigN" id="bigN" placeholder="N">
+                          </div> 
+                          <div class="input-group">
+                            <input type="number" class="form-control" name="smalln" id="smalln" placeholder="n">
+                        </div>
+                        <button type="button" class="btn btn-primary margin_top" onclick="SystematicRandomSampling()" id="systematicSamplBtn" >Hesapla</button> 
+                        </div>
+
+                        <!-- <div class="col">
                             <div class="input-group">
                                 <input type="number" class="form-control" name="newdata" id="systematicSampleNumberID" placeholder="(rastgele olaraka) kaç tane öğe istiyorsun?" onkeydown = "if (event.keyCode == 13)
                                 document.getElementById('systematicSamplBtn').click()">
                                 <button type="button" class="btn btn-primary" onclick="SystematicRandomSampling()" id="systematicSamplBtn" >Üret</button>
                             </div>                
-                        </div>
+                        </div> -->
+                        
                     </div>
                     <hr>
                     <p id="systematicRandomSamplingPlace"></p>
@@ -286,11 +303,9 @@
                     M<sub>4</sub>: <span id="m4"> </span>
                   </div>
                   <div class="col">
-                  Min: <span id="min"> </span>
+                    Değişim Katsayısı: <span id="DKS"> </span>
                   </div>
-                  <div class="col">
-                  Max: <span id="max"> </span>
-                  </div>
+                  <div class="col"></div>
                 </div>
               </div>
 

@@ -85,45 +85,76 @@ function displayedorderdItems(){
 // Simple Random Sampling (Basit Rastgele örnekleme)
 function simpleRandomSampling(){
     // simpleRandomSamplingPlace
-    var randItemNumber = document.getElementById('randomSampleNumberID').value;
-    document.getElementById("randomSampleNumberID").value = null;
+    var min = parseInt(document.getElementById('min').value);
+    var max = parseInt(document.getElementById('max').value);
+    var randItemNumber = parseInt(document.getElementById('rastgeleSayi').value);
     var randomItems = [];
+    var checkList =[];
+    var FinalItems = "";
 
-    if(randItemNumber > unarrangedItems.length){ 
-        randomItems+= '<span class="p-r"> girdiğiniz sayı kütleden büyük, kütleden daha küçük giriniz. </span>';
-        document.getElementById("simpleRandomSamplingPlace").innerHTML = randomItems;
-        return 0;
-    }else{
-        for (let i = 0; i < randItemNumber; i++) {
-            const random = Math.floor(Math.random() * unarrangedItems.length);
-            randomItems+= '<span class="p-r">' + unarrangedItems[random] + '</span>';
-        }
-    }
+     if(min <= max){
+                // creat the inside set of data
+                while(min <= max){
+                    randomItems.push(min);
+                    min++;
+                }
+                // chech for the ability of repeatence on not 
+                if(randItemNumber <= randomItems.length){
+                    // if the repeatence is NOT accepted
+                    var counter = 0;
+                    while( counter != randItemNumber ){
+                        var index =  Math.floor((Math.random() * randomItems.length) + 1)-1;
+                        if(!checkList.includes(randomItems[index])){
+                            checkList.push(randomItems[index]);
+                            FinalItems +=  '<span class="p-r">' + randomItems[index] + '</span>';
+                            counter++;
+                        }
+                    } 
 
-    document.getElementById("simpleRandomSamplingPlace").innerHTML = randomItems;
+                }else{
+                    // if the repeatence is accepted
+                    var counter = 0;
+                    while( counter != randItemNumber ){
+                        var index =  Math.floor((Math.random() * randomItems.length) + 1)-1;
+                        FinalItems +=  '<span class="p-r">' + randomItems[index] + '</span>';
+                        counter++;
+                    } 
+                }
+
+     }else{
+         alert("Lütfen doğru bilgileri giriniz.");
+     }
+
+    document.getElementById("simpleRandomSamplingPlace").innerHTML = FinalItems;
 }
 
 // Systematic Random Sampling (Sistematik Rastgele örnekleme)
 function SystematicRandomSampling(){
-    // debugger;
+    debugger;
     // general mass / genel kutle
-    var N = unarrangedItems.length;
+    var N = parseInt(document.getElementById("bigN").value);
     // sample number / ornekleme sayisi
-    var smalln  = document.getElementById("systematicSampleNumberID").value;
+    var smalln  = parseInt(document.getElementById("smalln").value);
     var K = Math.floor( N / smalln );
-    var random = Math.floor(Math.random() * K);
-    var systematicRandomItems = [];
+    var aSerisi = [];
 
+    var random = Math.floor(Math.random() * K);
+    var systematicRandomItems = "";
+
+    for(var i = 1; i <= K ; i++){
+        aSerisi.push(i);
+    }
     if(smalln  > N){
         systematicRandomItems+= '<span class="p-r"> Girdiğiniz numarayı kütleden daha büyüktür.</span>';
         document.getElementById("systematicRandomSamplingPlace").innerHTML = systematicRandomItems;
         return;
     }
-
-    for(var i = 0; i < smalln ; i++){
-        systematicRandomItems+= '<span class="p-r">'  + unarrangedItems[random] + '</span>';
-        random += K;
+    for(var i = 0; i < smalln; i++){
+        var newItem = random + ( i * K );
+        systematicRandomItems+= '<span class="p-r">'  +newItem+ '</span>';
+        // systematicRandomItems.push(newItem);
     }
+
     document.getElementById("systematicRandomSamplingPlace").innerHTML = systematicRandomItems;
 }
 
@@ -218,8 +249,15 @@ function getModes(array) {
     var h = Math.ceil(R/ K);
     sinifwidth = h;
 
+    var outercgangingValue = 1;
+    if(Number.isInteger( arrangedItems[0])){
+        cgangingValue = 1;
+    }else{
+        cgangingValue = 1;
+    }
+
     // 5. sinif limitleri hesapla 
-    var limitUst = (parseFloat(arrangedItems[0]) + parseFloat(h) -0.1);
+    var limitUst = (parseFloat(arrangedItems[0]) + parseFloat(h) - outercgangingValue);
     var limitAlt = arrangedItems[0];
     var classLimits = [];
   
@@ -240,14 +278,22 @@ function getModes(array) {
     var eklaneikFreakans = [];
     let oransalEklenikFrekanslar = [] ;
 
+
    for(var i = 0; i < K ; i++){
     var counter = 0;
     let counterforEkleniFrekans = 0;
+    var cgangingValue = 0.1;
+    debugger;
+    if(Number.isInteger( arrangedItems[i])){
+        cgangingValue = 1;
+    }else{
+        cgangingValue = 1;
+    }
 
         if(i == K-1){
-            classLimits += "<tr><td>"+ (parseFloat(limitAlt)+(h * i)) +"</td><td>"+ (parseFloat(limitUst)+(h * i)+0.1) +"</td></tr>";
+            classLimits += "<tr><td>"+ (parseFloat(limitAlt)+(h * i)) +"</td><td>"+ (parseFloat(limitUst)+(h * i)+ cgangingValue) +"</td></tr>";
             arrangedItems.forEach(function myfunc(item){
-                if(item >= (parseFloat(limitAlt)+(h * i)) && item <= (parseFloat(limitUst)+(h * i + 0.1)) ){
+                if(item >= (parseFloat(limitAlt)+(h * i)) && item <= (parseFloat(limitUst)+(h * i + cgangingValue)) ){
                     counter += 1;
                     counterforEkleniFrekans += 1;
                 }
@@ -326,15 +372,14 @@ function calculateDispersionMeasure(){
 
     varyans = varyans/(n-1);
     var standartSapma = Math.sqrt(varyans);
-    var min = arrangedItems[0];
-    var max =  arrangedItems[arrangedItems.length-1];
 
-    document.getElementById("variance").innerHTML = varyans.toFixed(3);
-    document.getElementById("standartSapma").innerHTML = standartSapma.toFixed(3);
-    document.getElementById("m3").innerHTML = m3.toFixed(3);
-    document.getElementById("m4").innerHTML = m4.toFixed(3);
-    document.getElementById("min").innerHTML = min;
-    document.getElementById("max").innerHTML = max;
+    var DKS = standartSapma/ortalama;
+
+    document.getElementById("variance").innerHTML = varyans.toFixed(2);
+    document.getElementById("standartSapma").innerHTML = standartSapma.toFixed(2);
+    document.getElementById("m3").innerHTML = m3.toFixed(2);
+    document.getElementById("m4").innerHTML = m4.toFixed(2);
+    document.getElementById("DKS").innerHTML = DKS.toFixed(2);
     calculateMeanAbsoluteDeviation();
     calculateQ1();
     calculateQ3()
@@ -343,6 +388,7 @@ function calculateDispersionMeasure(){
 
 
 function calculateQ1(){
+    debugger;
     // alt dortte birligin n/4 hesapla
     var altNboluDort = arrangedItems.length/4;
     var chekingValue = 0.0;
@@ -364,7 +410,7 @@ function calculateQ1(){
     var j1 = altNboluDort - n1;
 
     var Q1 = L1 + ((j1 * sinifwidth) / (FQ1));
-    document.getElementById("Q1").innerHTML = Q1;
+    document.getElementById("Q1").innerHTML = Q1.toFixed(2);
 }
 
 
@@ -379,7 +425,6 @@ function calculateQ3(){
         Q3SinifIndex++;
     }
 
-    debugger;
     var n3 = 0;
     for(var i = 0; i < (Q3SinifIndex-1) ; i++){
         n3 += sinifFrekansValues[i];
@@ -391,7 +436,7 @@ function calculateQ3(){
     var j3 = ust3Nbolu4 - n3;
 
     var Q3 = L3 + ((j3 * sinifwidth) / (FQ3));
-    document.getElementById("Q3").innerHTML = Q3;
+    document.getElementById("Q3").innerHTML = Q3.toFixed(2);
 }
 
 // calculate ortalama mutlak sapma
@@ -407,7 +452,7 @@ function calculateMeanAbsoluteDeviation(){
         varyans += Math.abs(item - ortalama);
     });
     varyans = varyans/n;
-    document.getElementById("ortalamaMutlakSapma").innerHTML = varyans.toFixed(3);
+    document.getElementById("ortalamaMutlakSapma").innerHTML = varyans.toFixed(2);
 }
 
 

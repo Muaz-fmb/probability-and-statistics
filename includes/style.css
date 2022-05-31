@@ -14,7 +14,6 @@ body {
 }
 
 .displaynon {
-  display: none;
 }
 
 .p-r {
@@ -70,4 +69,11 @@ td {
 
 .wrapWords{
   word-wrap: break-word;
+}
+
+.input-group{
+  margin-top: 5px;
+}
+.margin_top{
+  margin-top: 5px;
 }
